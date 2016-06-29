@@ -507,6 +507,11 @@ img::-moz-selection {
     background: 0 0;
 }
 
+#portfolio {
+    padding-top:20px;
+    background-color: #222;
+}
+
 body {
     webkit-tap-highlight-color: #222;
 }

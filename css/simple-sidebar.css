@@ -18,6 +18,18 @@ body {
     font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
 }
 
+.overview {
+    text-align: center;
+}
+
+.pi-pic {
+    margin-top: -40px;
+}
+
+.ssh-pic img{
+    width:500px;
+}
+
 .name {
     font-weight: 700;
 }

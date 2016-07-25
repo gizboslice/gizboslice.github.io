@@ -68,42 +68,20 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1>Let's set up an SSH Connection</h1>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="ssh-pic">
-                            <img src="img/ssh-mockup.png">
-                        </div>
+                        <h1>Now lets set up the FTP</h1>
                     </div>
                     <div class="col-md-12">
                         <div class="ssh-info">
-                            <h3>An SSH, or a Secure Shell, is an encrypted network protocol to allow remote login and other network services to operate securely over an unsecured network.</h3>
+                            <h3>The File Transfer Protocol (FTP) is a standard network protocol used to transfer computer files from one host to another host over the Internet.</h3>
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <h2>Here are the steps to set up an SSH on a Mac.</h2>
-                    </div> 
-                    <div class="col-md-6">
-                        <h3>First enable SSH in your Pi's settings</h3>
+                        <h3>Here are the steps to set up an FTP connection.</h3>
                         <ul>
-                            <li>Open your Pi's terminal, and open the software configuration tool by typing the following commmand:</li>
-                            <pre style="background-color:white;"><code>sudo raspi-config</code></pre>
-                            <li>Open advanced options, select "SSH", and a message should pop up asking if you would like the SSH server enable or disabled. Select Enable.</li>
+                            <li>Launch FileZilla and go to "Site Manager".</li>
+                            <li>For host, input the IP address. Fill in the user name and password (user name is "pi", and password is "raspberry")</li>
+                            <li>Click Connect</li>
                         </ul>
-                    </div> 
-                    <div class="col-md-6">
-                        <h3>Next make the connection on your device</h3>
-                        <ul>
-                            <li>Open your Pi's terminal, and open the software configuration tool by typing the following commmand:</li>
-                            <pre style="background-color:white;"><code>hostname -I</code></pre>
-                            <li>Open the terminal on your Mac and write the following command, but replace "IP" with the IP address of the Raspberry Pi.</li>
-                            <pre style="background-color:white;"><code>ssh pi@IP</code></pre>
-                            <li>When the connection works, you'll see a security authenticity warning. type "yes" to continue.</li>
-                            <li>You will then be prompted for the pi login. On raspbian, the default password is "raspberry".</li>
-                        </ul>
-                    </div> 
-                    <div class="col-md-12">
-                        <h3>You are now connected to your pi remotely</h3>
                     </div>           
                 </div>               
             </div>

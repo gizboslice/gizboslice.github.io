@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Raspberry Pi Intro</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <div class="name">
+                        <a href="hardware.html">
+                                Hardware Development
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <a href="pi-intro.html">Introduction</a>
+                </li>
+                <li>
+                    <a href="pi-ssh.html">SSH Connection</a>
+                </li>
+                <li>
+                    <a href="pi-ftp.html">FTP Connection</a>
+                </li>
+                <li>
+                    <a href="pi-motionlight.html">Motion Sensor Light</a>
+                </li>
+                <li>
+                    <a href="pi-smartcamera.html">Smart Camera</a>
+                </li>
+            </ul>
+
+
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>Motion Sensor Light</h1>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="ssh-info">
+                            <h3>This project is an introduction to basic circuitry and Python programming with the Raspberry Pi. The ultimate result will be a light that is activated when the PIR sensor recognizes high activity.</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Through these modules you will...</h4>
+                        <ul>
+                            <li>Create a circuit that gets a light to turn on</li>
+                            <li>Successfully write a complete python program</li>
+                            <li>Set a light to blink every second</li>
+                            <li>Connect a motion sensor to your Pi</li>
+                            <li>Get a light to blink when the motion sensor is activated</li>
+                        </ul>
+                    </div> 
+                    <div class="col-md-6">
+                        <h4>Things you need...</h4>
+                        <ul>
+                            <li>Raspbery Pi with basic peripherals (mouse, keyboard, monitor, etc.)</li>
+                            <li>LED light and resistor</li>
+                            <li>Male-to-Male and Female-to-Female jumper wires</li>
+                            <li>PIR Motion Sensor</li>
+                        </ul>
+                    </div> 
+                    <div class="col-md-12">
+                        <ol>
+                            <h2><li>Connect the LED light to pin 3 of the Raspberry Pi GPIO.</li></h2>
+                            <div class="ledpic">
+                                <img src="img/LEDraspi.png">
+                            </div>
+                            <h2><li>Open a text editor, write the following code, and save it as a Python File.</li></h2>
+
+
+<pre><code>import RPi.GPIO as GPIO
+import time
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(3,GPIO.OUT)       #Define pin 3 as an output pin
+
+while True:
+        GPIO.output(3,1)     #Outputs digital HIGH signal (5v) on pin 3 
+        time.sleep(1)        #Time delay of 1 second
+
+        GPIO.output(3,0)     #Outputs digital LOW signal (0v) on pin 3 
+        time.sleep(1)        #Time delay of 1 second
+</code></pre>
+
+
+                            <h2><li>Run the program on your Raspberry Pi to test your work.</li></h2>
+                            <h2><li>Attach the PIR Motion Sensor to your Raspberry Pi like the image indicates</li></h2>
+                            <div class="ledpic">
+                                <img src="img/PIRraspi.png">
+                            </div>
+                            <h2><li>Open a text editor, write the following code, and save it as a Python File.</li></h2>
+
+
+<pre><code>import RPi.GPIO as GPIO
+import time
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(11,GPIO.IN)                   #Read output from PIR motion sensor
+GPIO.setup(3,GPIO.OUT)                   #Define pin 3 as an output pin
+
+while True:
+    i = GPIO.input(11)       
+    if i == 0:                           #When output from motion sensor is LOW
+        print "No intruders", i
+        GPIO.output(3,0)                 #Turn light off
+        time.sleep(1)
+    elif i == i:                         #when output from motion sensor is HIGH
+        print "Intruder detected", i     
+        GPIO.output(3,1)                 #turn light on
+        time.sleep(1)
+</code></pre>   
+
+                            <h2><li>Run the program on your Raspberry Pi to test your work.
+</li></h2>                       
+                        </ol>
+                    </div>           
+                </div>               
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+</body>
+
+</html>

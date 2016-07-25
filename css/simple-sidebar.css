@@ -38,6 +38,19 @@ body {
     padding-top:30px;
 }
 
+.ledpic img{
+    width:300px;
+}
+
+pre {
+    background-color: white;
+    padding-bottom: -10px;
+}
+
+pre code {
+    padding-left: -100px;
+}
+
 #wrapper.toggled {
     padding-left: 250px;
 }

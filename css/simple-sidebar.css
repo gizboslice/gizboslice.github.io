@@ -42,6 +42,11 @@ body {
     width:300px;
 }
 
+.picam img {
+    width:500px;
+    padding:20px;
+}
+
 pre {
     background-color: white;
     padding-bottom: -10px;

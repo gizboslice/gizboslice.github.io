@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Andrew Ginzberg</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <div class="name">
+                        <a href="hardware.html">
+                                Hardware Development
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <a href="pi-intro.html">Introduction</a>
+                </li>
+                <li>
+                    <a href="pi-ssh.html">SSH Connection</a>
+                </li>
+                <li>
+                    <a href="pi-ftp.html">FTP Connection</a>
+                </li>
+                <li>
+                    <a href="pi-motionlight.html">Motion Sensor Light</a>
+                </li>
+                <li>
+                    <a href="pi-smartcamera.html">Smart Camera</a>
+                </li>
+            </ul>
+
+
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>Smart Security Cam</h1>
+                    </div>
+                    <div class="picam">
+                        <img src="img/picam.jpg">
+                    </div>
+                    <div class="col-md-12">
+                        <div class="ssh-info">
+                            <h3>The cloud cam is a project to build an internet-connected security camera using a Raspberry Pi and Pi camera.  The camera can detect motion and upload images to Dropbox's cloud storage service, or the beta of Adafruit IO, Adafruit's internet of things service.</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Through these modules you will...</h4>
+                        <ul>
+                            <li>Connect a camera to a Raspberry Pi</li>
+                            <li>Install scripts</li>
+                            <li>Connect to dropbox</li>
+                            <li>Configure motion detection on camera</li>
+                            <li>Get a light to blink when the motion sensor is activated</li>
+                            <li>Connect to Adafruit IO</li>
+                        </ul>
+                    </div> 
+                    <div class="col-md-6">
+                        <h4>Things you need...</h4>
+                        <ul>
+                            <li>Raspbery Pi with basic peripherals (mouse, keyboard, monitor, etc.)</li>
+                            <li>Pi Camera</li>
+                        </ul>
+                    </div> 
+                    <div class="col-md-12">
+                        <ol>
+                            <h2><li>Pi camera setup</li></h2>
+                                <h4>To setup the Pi camera carefully follow the video below:</h4>
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/GImeVqHQzsE" frameborder="0" allowfullscreen></iframe>
+                                <h4>Once camera is connected, turn on Pi and enable the camera by using the raspi-config tool. Run the following command:</h4>
+                                    <pre><code>sudo raspi-config</code></pre>
+                                <h4>Select <b>Enable Camera</b> option, then confirm the selection by clicking <b>Enable</b> in the dialog that appears.</h4>
+                                <h4>In the main menu, select <b>Finish</b>. Reboot your pi</h4>
+                                <h4>After pi reboots, test camera connection by running th following command:</h4>
+                                    <pre><code>raspistill -o cam_test.jpg</code></pre>
+                                <h4>You should see a red light on camera board as the photo is taken.</h4>
+
+                            <h2><li>Sync to Dropbox</li></h2>
+                                <h4>Install and configure the Dropbox Uploader Script by typing the following commands into the Pi's terminal. This is a great script written by Andrea Fabrizi.</h4>
+                                
+<pre><code>sudo apt-get update
+sudo apt-get install -y curl
+cd ~
+git clone https://github.com/andreafabrizi/Dropbox-Uploader.git
+cd Dropbox-Uploader
+chmod a+x dropbox_uploader.sh
+sudo cp dropbox_uploader.sh /usr/local/bin/dropbox_uploader</code></pre>                 
+                                <h4>Once installed, right the following command to run the script:</h4>
+                                    <pre><code>dropbox_uploader</code></pre>
+                                <h4>The following should display:</h4>
+<pre><code>Dropbox Uploader v0.16
+Andrea Fabrizi - andrea.fabrizi@gmail.com
+ 
+Usage: /usr/local/bin/dropbox_uploader COMMAND [PARAMETERS]...
+ 
+Commands:
+     upload   <LOCAL_FILE/DIR ...>  <REMOTE_FILE/DIR>
+     download <REMOTE_FILE/DIR> [LOCAL_FILE/DIR]
+     delete   <REMOTE_FILE/DIR>
+     move     <REMOTE_FILE/DIR> <REMOTE_FILE/DIR>
+     copy     <REMOTE_FILE/DIR> <REMOTE_FILE/DIR>
+     mkdir    <REMOTE_DIR>
+     list     [REMOTE_DIR]
+     share    <REMOTE_FILE>
+     saveurl  <URL> <REMOTE_DIR>
+     info
+     unlink
+ 
+Optional parameters:
+    -f            Load the configuration file from a specific file
+    -s            Skip already existing files when download/upload. Default: Overwrite
+    -d            Enable DEBUG mode
+    -q            Quiet mode. Don't show messages
+    -p            Show cURL progress meter
+    -k            Doesn't check for SSL certificates (insecure)
+ 
+For more info and examples, please see the README file.</code></pre>
+
+
+                                <h4>Once the script is installed, you need to complete one time setup to get pi to talk to Dropbox account. Run the upload command:</h4>
+                                    <pre><code>dropbox_uploader upload</code></pre>
+                                <h4>Follow the directions that are outputed through the terminal.</h4>
+                                <br>
+                                <h4>Once all of the steps are completed, make the dropbox_uploader file readable by all users by entering the following command:</h4>
+                                    <pre><code>chmod a+r ~/.dropbox_uploader</code></pre>
+                                <h4>Test the Dropbox connection by uploading a file to it.</h4>
+                                    <pre><code>dropbox_uploader upload README.md "Cloud Cam/"</code></pre>
+                                <h4>Check Dropbox and see if folder was added.</h4>
+                            
+                            <h2><li>Motion Setup</li></h2>
+                                <h4>"Before you can use the motion package you'll need to load a special kernel module that will make it work with the Pi camera."</h4>
+                                <h4>Connect to the Pi and run the following command to edit the /etc/modules configuration file:</h4>
+                                    <pre><code>sudo nano /etc/modules</code></pre>
+                                <h4>"This file controls what extra kernel modules are loaded on boot and we need to add a new line to include the special Pi camera V4L2 module.  Scroll down to the bottom of the file and add the following line:"</h4>
+                                    <pre><code>bcm2835_v4l2</code></pre>
+                                <h4>Save the file by pressing Ctrl-o and then Ctrl-x to exit.</h4>
+                                <h4>Reboot the Pi:</h4>
+                                    <pre><code>sudo reboot</code></pre>
+                            <h2><li>Motion Install/config</li></h2>
+                                <h4>Install motion by running the following commands</h4>
+<pre><code>sudo apt-get update
+sudo apt-get install -y motion</code></pre>
+                                <h4>Run command to fix small issue:</h4>
+<pre><code>sudo mkdir /var/lib/motion
+sudo chown motion:motion /var/lib/motion</code></pre>
+                                <h4>Customize motion's behavior. Get to the config file by tying the following command:</h4>
+                                    <pre><code>sudo nano /etc/motion/motion.conf</code></pre>
+                        </ol>
+                        <p>Sources: <a href="https://learn.adafruit.com/cloud-cam-connected-raspberry-pi-security-camera/overview">Adafruit's overview Tutorial</a> & <a href="https://learn.adafruit.com/cloud-cam-connected-raspberry-pi-security-camera/dropbox-sync">Adafruit's Dropbox Setup Tutorial</a></p>
+                        
+                    </div>           
+                </div>               
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+</body>
+
+</html>
